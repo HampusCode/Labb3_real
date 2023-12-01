@@ -89,11 +89,38 @@ public class CarController {
         }
     }
 
-        void setTurboOff(){
+    void setTurboOff(){
         for(Vehicle car : cars){
             if(car.getModelName().equals("Saab95")){
                 ((Saab95)car).setTurboOff();
             }
+        }
+    }
+    void liftBedButton(){
+        for(Vehicle car : cars){
+            if(car.getModelName().equals("Scania")){
+                ((Scania)car).raiseBed();
+            }
+        }
+    }
+    void lowerBedButton(){
+        for(Vehicle car : cars){
+            if(car.getModelName().equals("Scania")){
+                ((Scania)car).lowerBed();
+            }
+        }
+    }
+    void startButton(int amount){
+        double gas = ((double) amount) / 100;
+        for (Vehicle car : cars
+                ) {
+            car.gas(gas);
+        }
+    }
+    void stopButton(){
+        for (Vehicle car : cars
+                ) {
+            car.stopEngine();
         }
     }
 }
