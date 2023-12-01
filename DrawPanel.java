@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -11,13 +12,23 @@ public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
+    BufferedImage scaniaImage;
+    BufferedImage saabImage;
     // To keep track of a singel cars position
     Point volvoPoint = new Point();
 
+    Point saabPoint = new Point(0,100);
+    
+    Point scaniaPoint = new Point(0,200);
+
+    HashMap<String,Point> vehicles = new HashMap<>();
+
     // TODO: Make this genereal for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+    void moveit(int x, int y, String vehicle){
+        Point vehicleP = vehicles.get(vehicle);
+        vehicleP.x = x;
+        vehicleP.y = y;
+        vehicles.put(vehicle,vehicleP);
     }
 
     // Initializes the panel and reads the images
@@ -34,6 +45,11 @@ public class DrawPanel extends JPanel{
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
             volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+            vehicles.put("Saab95",saabPoint);
+            vehicles.put("Volvo240",volvoPoint);
+            vehicles.put("Scania",scaniaPoint);
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -47,5 +63,7 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
+        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
     }
 }

@@ -110,6 +110,10 @@ public abstract class Vehicle implements Movable{
         posY += deltaY;
     }
 
+    public void setDir(double a){
+        this.dir = a;
+    }
+
     public void turnLeft(){
         dir -= 10;
     }
