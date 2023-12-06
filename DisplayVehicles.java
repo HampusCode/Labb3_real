@@ -5,6 +5,6 @@ import java.util.ArrayList;
 
 
 public class DisplayVehicles {
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    public ArrayList<Vehicle> vehicles = new ArrayList<>();
 
 }
