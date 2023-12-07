@@ -4,11 +4,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TimerListner implements ActionListener {
-    LogicPanel frame;
+    VehicleView view;
     ArrayList<Vehicle> cars = new ArrayList<>();
-    public TimerListner(ArrayList<Vehicle> cars, LogicPanel frame){
+
+    public TimerListner(ArrayList<Vehicle> cars, VehicleView view){
         this.cars = cars;
-        this.frame = frame;
+        this.view = view;
     }
     public void actionPerformed(ActionEvent e) {
 
@@ -22,8 +23,8 @@ public class TimerListner implements ActionListener {
             }
             car.move();
             String name = car.getModelName();
-            frame.drawPanel.moveit(x, y,name);
-            frame.drawPanel.repaint();
+            view.drawPanel.moveit(x, y,name);
+            view.drawPanel.repaint();
         }
     }
 }
