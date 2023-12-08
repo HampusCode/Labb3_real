@@ -13,5 +13,6 @@ public class CarButtons {
     JButton lowerBedButton = buttonFactory.createButton("Lower Lift Bed");
     JButton startButton = buttonFactory.createButton("Start all cars");
     JButton stopButton = buttonFactory.createButton("Stop all cars");
-
+    JButton addCar = buttonFactory.createButton("Add car");
+    JButton removeCar = buttonFactory.createButton("Remove car");
 }

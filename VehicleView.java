@@ -54,6 +54,8 @@ public class VehicleView extends JFrame{
         controlPanel.add(carB.brakeButton, 3);
         controlPanel.add(carB.turboOffButton, 4);
         controlPanel.add(carB.lowerBedButton, 5);
+        controlPanel.add(carB.addCar);
+        controlPanel.add(carB.removeCar);
         controlPanel.setPreferredSize(new Dimension((X / 2) + 4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -84,7 +86,12 @@ public class VehicleView extends JFrame{
 
 
 
-
+    public JButton getRemoveCarButton(){
+        return carB.removeCar;
+    }
+    public JButton getAddCarButton(){
+        return carB.addCar;
+    }
     public JButton getGasButton(){
         return carB.gasButton;
     }

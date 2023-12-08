@@ -10,6 +10,9 @@ public class DisplayVehicles {
         vehicles = new ArrayList<>();
     }
 
+    public void removeVehicle(Vehicle vehicle){
+        vehicles.remove(vehicle);
+    }
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
     }

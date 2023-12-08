@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class LogicPanel{
@@ -43,7 +44,19 @@ public class LogicPanel{
         // This actionListener is for the gas button only
         // TODO: Create more for each component as necessary
 
+        view.getRemoveCarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeCar();
+            }
+        });
 
+        view.getAddCarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCar();
+            }
+        });
 
         view.getGasButton().addActionListener(new ActionListener() {
             @Override
@@ -103,8 +116,31 @@ public class LogicPanel{
 
     }
 
+    public void removeCar(){
+        
+        int len = cars.size()-1;
+        if(len > -1){
+            cars.remove(len);
+        }
+    }
 
-
+    public void addCar(){
+        if(cars.size() < 10){
+        Vehicle[] carsToAdd = {new Saab95(), new Volvo240(), new Scania()};
+        Random random = new Random();
+        int randomIndex = random.nextInt(carsToAdd.length);
+        Vehicle v = carsToAdd[randomIndex];
+        displayVehicles.addVehicle(v);
+        cars =  displayVehicles.vehicles;
+        int offset = (cars.size()-1)*100;
+        
+        if(offset >= 500){
+            v.setX(100);
+            offset %= 500;
+        }
+        v.setY(offset);
+        }
+    }
 
     // Calls the gas method for each car once
     public void gas(int amount) {
@@ -153,10 +189,9 @@ public class LogicPanel{
         }
     }
     void startButton(int amount){
-        double gas = ((double) amount) / 100;
         for (Vehicle car : cars
         ) {
-            car.gas(gas);
+            car.startEngine();
         }
     }
     void stopButton(){
