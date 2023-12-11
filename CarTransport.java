@@ -42,11 +42,13 @@ public class CarTransport extends Truck{
 
     public void raiseBed(){
         this.bedDown = false;
+        this.changeState(new BedUpState(this));
     }
 
     public void lowerBed(){
         if(getCurrentSpeed() == 0){
             this.bedDown = true;
+            this.changeState(new BedDownState(this));
         }
     }
 

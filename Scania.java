@@ -7,6 +7,7 @@ public class Scania extends Truck{
     public Scania(){
         super(2,250,0,Color.white,"Scania");
         this.angle = 0;
+        this.changeState(new BedDownState(this));
         stopEngine();
     }
 
@@ -14,6 +15,7 @@ public class Scania extends Truck{
     public void lowerBed(){
         if(this.angle < 5){
             this.angle = 0;
+            this.changeState(new BedDownState(this));
         }else{
             this.angle -= 5;
         }
@@ -28,6 +30,7 @@ public class Scania extends Truck{
             this.angle += 5;
         }
         }
+        this.changeState(new BedUpState(this));
     }
 
     public float getAngle(){
@@ -36,10 +39,7 @@ public class Scania extends Truck{
 
     @Override
     public double speedFactor(){
-        if(this.angle > 0){
-            return 0;
-        }
-        return getEnginePower() * 0.01 * 1;
+        return bedState.speedFactor();
     }
     
 }
